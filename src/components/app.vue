@@ -1,25 +1,52 @@
 <template>
 <div id="app">
-	<cube :sides="sides" url="http://www.baidu.com"></cube>
+	<transition name="nav-show">
+		<nav-bar v-show="showNav" :logo="logo" :title="title" :sub-title="subTitle" :nav-list="navList"></nav-bar>
+	</transition>
+	<main-container :class="{'rm-margin': resizeMain}">
+		<router-view></router-view>
+	</main-container>
 </div>
 </template>
 
 <style lang="sass" scoped>
-#app {
-	padding: 300px;
-}
+	@import '../style/common';
+	.nav-show-enter-active,
+	.nav-show-leave-active {
+		transition: transform 0.3s ease;
+	}
+	
+	.nav-show-enter,
+	.nav-show-leave-active {
+		transform: translateX(-$navBarWidth);
+	}
+	
+	.rm-margin {
+		margin-left: 0!important;
+	}
 </style>
 
 <script>
-import cube from './cube';
-export default {
-	data() {
-		return {
-			sides: ['苟', '利', '国', '家', '生', '死']
-		};
-	},
-	components: {
-		cube
-	}
-};
+	import '../style/_reset.scss';
+	import navBar from './nav-bar';
+	import mainContainer from './main-container';
+	import config from '../config/app.base';
+
+	config.showNav = true;
+	config.resizeMain = false;
+	export default {
+		data() {
+			return config;
+		},
+		mounted() {
+			let ctx = this;
+			$(window).on('resize', (event) => {
+				ctx.resizeMain = !(ctx.showNav = $(window).width() > 800);
+			});
+		},
+		components: {
+			mainContainer,
+			navBar
+		}
+	};
 </script>
