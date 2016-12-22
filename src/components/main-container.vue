@@ -8,7 +8,9 @@
 @import '../style/common';
 #main-container {
 	margin-left: $navBarWidth;
-	padding: 100px;
+	padding: 50px 80px 0;
+	min-width: 600px;
+	max-width: 800px;
 }
 </style>
 

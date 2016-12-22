@@ -105,7 +105,7 @@ module.exports = {
 		}, {
 			// 给单个js文件用的babel,也是给vue用的
 			test: /\.jsx?$/,
-			exclude: MODULE_PATH,
+			include: [APP_PATH, path.resolve(MODULE_PATH, 'st-api')],
 			loader: 'babel',
 			query: {
 				presets: ['es2015'],

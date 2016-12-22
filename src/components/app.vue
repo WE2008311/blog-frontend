@@ -28,6 +28,8 @@
 
 <script>
 	import '../style/_reset.scss';
+	// 如果用@import会导致body选择器带属性选择器，而vue是不会把body添加scoped属性的，所以选不到body
+	import'../style/_main.scss';
 	import navBar from './nav-bar';
 	import mainContainer from './main-container';
 	import config from '../config/app.base';
