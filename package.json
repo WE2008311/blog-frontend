@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "mock": "pm2 start process.json",
     "build-dev": "webpack --config build/webpack.dev.js",
     "build-prod": "webpack --config build/webpack.prod.js",
     "start-dev": "cross-env NODE_ENV=dev node start.js",
@@ -54,6 +55,10 @@
     "js-beautify": "^1.6.4",
     "jsdoc": "^3.4.3",
     "json-loader": "^0.5.4",
+    "koa": "^1.2.4",
+    "koa-bodyparser": "^2.3.0",
+    "koa-multer": "0.0.2",
+    "koa-router": "^5.4.0",
     "node-sass": "^4.1.0",
     "open": "0.0.5",
     "postcss-loader": "^1.2.1",
