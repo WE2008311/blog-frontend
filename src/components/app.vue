@@ -4,7 +4,9 @@
 		<nav-bar v-show="showNav" :logo="logo" :title="title" :sub-title="subTitle" :nav-list="navList"></nav-bar>
 	</transition>
 	<main-container :class="{'rm-margin': resizeMain}">
-		<router-view></router-view>
+		<transition name="main" mode="out-in">
+			<router-view :config="config"></router-view>
+		</transition>
 	</main-container>
 </div>
 </template>
@@ -24,6 +26,17 @@
 	.rm-margin {
 		margin-left: 0!important;
 	}
+
+	.main-enter-active, .main-leave-active {
+		transition: all 0.3s ease;
+	}
+	
+	.main-enter, .main-leave {
+		opacity: 0;
+		transform: translateX(150px);
+	}
+
+
 </style>
 
 <script>
@@ -38,7 +51,7 @@
 	config.resizeMain = false;
 	export default {
 		data() {
-			return config;
+			return Object.assign(config, {config});
 		},
 		mounted() {
 			let ctx = this;

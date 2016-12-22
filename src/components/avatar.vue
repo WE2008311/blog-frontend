@@ -53,6 +53,7 @@
 </style>
 
 <script>
+	import '../style/_reset.scss';
 	export default {
 		methods: {
 			goto() {
