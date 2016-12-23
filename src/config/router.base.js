@@ -18,6 +18,9 @@ const routes = [{
 	name: 'about',
 	path: '/about'
 }, {
+	name: 'post',
+	path: '/post/:id'
+}, {
 	path: '/',
 	redirect: '/home/1'
 }, {

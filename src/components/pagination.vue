@@ -85,7 +85,7 @@
 		},
 		beforeMount() {
 			this.currentPage = parseInt(this.$route.params.page, 10);
-			if (this.currentPage < 1 || this.currentPage > this.totalPage) {
+			if (this.currentPage < 1 || this.currentPage > this.totalPage || isNaN(this.currentPage)) {
 				this.$router.replace({
 					name: this.route,
 					params: {
@@ -97,7 +97,7 @@
 		watch: {
 			'$route' (to, from) {
 				this.currentPage = parseInt(to.params.page, 10);
-				if (this.currentPage < 1 || this.currentPage > this.totalPage) {
+				if (this.currentPage < 1 || this.currentPage > this.totalPage || isNaN(this.currentPage)) {
 					this.$router.replace({
 						name: this.route,
 						params: {

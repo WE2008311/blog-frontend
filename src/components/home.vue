@@ -3,17 +3,19 @@
 	<div id="posts-prev-list">
 		<div class="post-prev" v-for="post in posts">
 			<h1 class="prev-title">
-				<span>Test</span>
+				<router-link tag="span" :to="{name: postRoute, params: {id: post.id}}">{{post.title}}</router-link>
 			</h1>
 			<h3 class="prev-info">
 				<span>Posted by <span class="prev-blue">{{post.author}}</span></span>
 				<span>on <span class="prev-blue">{{post.year}}/{{post.month}}/{{post.day}}</span></span>
 			</h3>
 			<div class="summary" v-html="post.content"></div>
-			<div class="more-bar"><router-link to="/" class="read-more">more <i class="icon-circle-right"></i></router-link></div>
+			<div class="more-bar"><router-link :to="{name: postRoute, params: {id: post.id}}" class="read-more">more <i class="icon-circle-right"></i></router-link></div>
 		</div>
 	</div>
-	<pagination :total="total" :limit="limit" :window-limit="windowLimit" :current-page="currentPage" :route="route"></pagination>
+	<div class="pagination-bar">
+		<pagination :total="total" :limit="limit" :window-limit="windowLimit" :current-page="currentPage" :route="homeRoute"></pagination>
+	</div>
 </div>
 </template>
 
@@ -26,6 +28,8 @@
 	$infoFtSize: 14px;
 	#home {
 		overflow: hidden;
+		position: relative;
+		min-height: 650px;
 	}
 	
 	#posts-prev-list {
@@ -133,6 +137,14 @@
 			border-bottom: 1px solid rgba($color: $pColor, $alpha: 0.5);
 		}
 	}
+
+	.pagination-bar {
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		left: 0;
+		bottom: 20px;
+	}
 </style>
 
 <script>
@@ -192,7 +204,8 @@
 				limit: 5,
 				windowLimit: 10,
 				currentPage: 11,
-				route: 'home',
+				homeRoute: 'home',
+				postRoute: 'post',
 				posts: []
 			};
 		},
