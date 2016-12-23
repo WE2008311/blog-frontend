@@ -6,7 +6,7 @@ const home = resolve => require(['../components/home'], resolve);
 
 const routes = [{
 	name: 'home',
-	path: '/home/:id',
+	path: '/home/:page',
 	component: home,
 }, {
 	name: 'archives',

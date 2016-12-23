@@ -13,6 +13,7 @@
 			<div class="more-bar"><router-link to="/" class="read-more">more <i class="icon-circle-right"></i></router-link></div>
 		</div>
 	</div>
+	<pagination :total="total" :limit="limit" :window-limit="windowLimit" :current-page="currentPage" :route="route"></pagination>
 </div>
 </template>
 
@@ -141,6 +142,8 @@
 	import trimHtml from 'trim-html';
 	import 'nprogress/nprogress.css';
 	import MarkdownParser from '../lib/markdown-parser';
+	import StatusCode from '../lib/status-code';
+	import pagination from './pagination';
 	/* global apis */
 
 	let parser = new MarkdownParser();
@@ -149,7 +152,7 @@
 		// tmpPosts用来穿透Promise
 		let pm = [],
 			tmpPosts = [],
-			page = to.params.id || 1,
+			page = to.params.page || 1,
 			limit = 5;
 		nprogress.start();
 
@@ -158,6 +161,10 @@
 			limit
 		})
 		.then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				nprogress.done();
+				throw new Error(resp.data.errMsg);
+			}
 			nprogress.inc(0.3);
 			let posts = resp.data.posts;
 			tmpPosts = posts;
@@ -181,7 +188,11 @@
 	export default {
 		data() {
 			return {
-				total: 0,
+				total: 501,
+				limit: 5,
+				windowLimit: 10,
+				currentPage: 11,
+				route: 'home',
 				posts: []
 			};
 		},
@@ -189,6 +200,9 @@
 			config: {
 				type: Object
 			}
+		},
+		components: {
+			pagination
 		},
 		// watch的意义在于当翻页时，即/home/1到/home/2，组件被复用，
 		// 没有重新实例化，也就不会触发beforeRouteEnter，也就不会发起请求，
@@ -198,6 +212,7 @@
 				whileRoute(to, from).then(posts => {
 					this.posts = posts;
 				}).catch(err => {
+					console.error(err);
 					nprogress.done();
 				});
 			}
@@ -209,6 +224,7 @@
 					document.title = `Home | ${vm.config.title}`;
 				});
 			}).catch(err => {
+				console.error(err);
 				nprogress.done();
 			});
 		}

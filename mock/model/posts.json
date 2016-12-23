@@ -1,6 +1,6 @@
 {
 	"get /posts": {
-		"status": "0001",
+		"status": "200",
 		"total": 49,
 		"posts": [{
 			"id": "5859d59effc28134d02796b7",
