@@ -5,7 +5,7 @@
 	</transition>
 	<main-container :class="{'rm-margin': resizeMain}">
 		<transition name="main" mode="out-in">
-			<router-view :config="config"></router-view>
+			<router-view></router-view>
 		</transition>
 	</main-container>
 </div>
@@ -31,9 +31,14 @@
 		transition: all 0.3s ease;
 	}
 	
-	.main-enter, .main-leave {
+	.main-enter {
 		opacity: 0;
 		transform: translateX(150px);
+	}
+
+	.main-leave-active {
+		opacity: 0;
+		transform: translateX(-150px);
 	}
 
 
@@ -47,11 +52,12 @@
 	import mainContainer from './main-container';
 	import config from '../config/app.base';
 
+	window.config  = config;
 	config.showNav = true;
 	config.resizeMain = false;
 	export default {
 		data() {
-			return Object.assign(config, {config});
+			return config;
 		},
 		mounted() {
 			let ctx = this;

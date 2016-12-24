@@ -156,7 +156,7 @@
 	import MarkdownParser from '../lib/markdown-parser';
 	import StatusCode from '../lib/status-code';
 	import pagination from './pagination';
-	/* global apis */
+	/* global apis, config */
 
 	let parser = new MarkdownParser();
 
@@ -209,11 +209,6 @@
 				posts: []
 			};
 		},
-		props: {
-			config: {
-				type: Object
-			}
-		},
 		components: {
 			pagination
 		},
@@ -234,7 +229,7 @@
 			whileRoute(to, from, next).then(posts => {
 				next(vm => {
 					vm.posts = posts;
-					document.title = `Home | ${vm.config.title}`;
+					document.title = `Home | ${config.title}`;
 				});
 			}).catch(err => {
 				console.error(err);
