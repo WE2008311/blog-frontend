@@ -150,52 +150,10 @@
 <script>
 	import '../style/_reset.scss';
 	import nprogress from 'nprogress';
-	import Promise from 'bluebird';
-	import trimHtml from 'trim-html';
 	import 'nprogress/nprogress.css';
-	import MarkdownParser from '../lib/markdown-parser';
-	import StatusCode from '../lib/status-code';
 	import pagination from './pagination';
-	/* global apis, config */
-
-	let parser = new MarkdownParser();
-
-	function whileRoute(to, from, next) {
-		// tmpPosts用来穿透Promise
-		let pm = [],
-			tmpPosts = [],
-			page = to.params.page || 1,
-			limit = 5;
-		nprogress.start();
-
-		return apis.getPosts.get({
-			page,
-			limit
-		})
-		.then(resp => {
-			if (resp.data.status != StatusCode.OK) {
-				nprogress.done();
-				throw new Error(resp.data.errMsg);
-			}
-			nprogress.inc(0.3);
-			let posts = resp.data.posts;
-			tmpPosts = posts;
-			for (let i in posts) {
-				pm.push(parser.parse(posts[i].content));
-			}
-			return Promise.all(pm);
-		})
-		.then(contents => {
-			nprogress.inc(0.3);
-			for (let k in contents) {
-				tmpPosts[k].content = trimHtml(contents[k], {
-					limit: 400
-				}).html;
-			}
-			nprogress.done();
-			return tmpPosts;
-		});
-	}
+	import PostService from '../lib/post-service';
+	/* global config */
 
 	export default {
 		data() {
@@ -217,21 +175,31 @@
 		// 所以还需要监听路由变化来发起请求
 		watch: {
 			'$route' (to, from) {
-				whileRoute(to, from).then(posts => {
-					this.posts = posts;
-				}).catch(err => {
+				nprogress.start();
+				PostService.getPosts(to.params.page || 1, 5)
+				.then(data => {
+					this.total = data.total;
+					this.posts = data.posts;
+					nprogress.done();
+				})
+				.catch(err => {
 					console.error(err);
 					nprogress.done();
 				});
 			}
 		},
 		beforeRouteEnter(to, from, next) {
-			whileRoute(to, from, next).then(posts => {
+			nprogress.start();
+			PostService.getPosts(to.params.page || 1, 5)
+			.then(data => {
 				next(vm => {
-					vm.posts = posts;
+					vm.total = data.total;
+					vm.posts = data.posts;
 					document.title = `Home | ${config.title}`;
+					nprogress.done();
 				});
-			}).catch(err => {
+			})
+			.catch(err => {
 				console.error(err);
 				nprogress.done();
 			});

@@ -10,6 +10,7 @@
 
 <style lang="sass" scoped>
 	@import '../style/common';
+	@import '../style/main';
 	$containerWidth: 40px;
 	$border: 2px solid $globalBgColor;
 	.scroll-top {
@@ -18,6 +19,7 @@
 	
 	.scroll-wrapper {
 		color: $globalBgColor;
+		background: $bodyBgColor;
 		width: $containerWidth;
 		height: $containerWidth;
 		border: $border;
