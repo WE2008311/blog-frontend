@@ -3,14 +3,14 @@
 	<div id="posts-prev-list">
 		<div class="post-prev" v-for="post in posts">
 			<h1 class="prev-title">
-				<router-link tag="span" :to="{name: postRoute, params: {id: post.id}}">{{post.title}}</router-link>
+				<router-link tag="span" :to="{name: postsRoute, params: {id: post.id}}">{{post.title}}</router-link>
 			</h1>
 			<h3 class="prev-info">
 				<span>Posted by <span class="prev-blue">{{post.author}}</span></span>
 				<span>on <span class="prev-blue">{{post.year}}/{{post.month}}/{{post.day}}</span></span>
 			</h3>
 			<div class="summary" v-html="post.content"></div>
-			<div class="more-bar"><router-link :to="{name: postRoute, params: {id: post.id}}" class="read-more">more <i class="icon-circle-right"></i></router-link></div>
+			<div class="more-bar"><router-link :to="{name: postsRoute, params: {id: post.id}}" class="read-more">more <i class="icon-circle-right"></i></router-link></div>
 		</div>
 	</div>
 	<div class="pagination-bar">
@@ -163,7 +163,7 @@
 				windowLimit: 10,
 				currentPage: 11,
 				homeRoute: 'home',
-				postRoute: 'post',
+				postsRoute: 'posts',
 				posts: []
 			};
 		},
@@ -202,6 +202,7 @@
 			.catch(err => {
 				console.error(err);
 				nprogress.done();
+				next(false);
 			});
 		}
 	};

@@ -2,3 +2,37 @@
 body {
 	background: $bodyBgColor;
 }
+
+::-webkit-scrollbar {
+	width: 8px;
+	margin: 0 1px;
+	background: #fdfdfd;
+}
+
+::-webkit-scrollbar:horizontal {
+	height: 8px;
+}
+
+::-webkit-scrollbar-button {
+	height: 0;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: #fdfdfd;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	width: 8px;
+	margin: 0 1px;
+	border-radius: 4px;
+	background: #c4c4c4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #909090;
+}

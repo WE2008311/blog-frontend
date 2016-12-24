@@ -4,6 +4,7 @@ Vue.use(VueRouter);
 
 const home = resolve => require(['../components/home'], resolve);
 const archives = resolve => require(['../components/archives'], resolve);
+const posts = resolve => require(['../components/posts'], resolve);
 
 const routes = [{
 	name: 'home',
@@ -20,8 +21,9 @@ const routes = [{
 	name: 'about',
 	path: '/about'
 }, {
-	name: 'post',
-	path: '/post/:id'
+	name: 'posts',
+	path: '/posts/:id',
+	component: posts
 }, {
 	path: '*',
 	redirect: '/home/1'

@@ -6,9 +6,11 @@ import StatusCode from './status-code';
 
 let parser = new MarkdownParser();
 let pm = [];
-let tmpPosts = [];
 let postsCatche = {};
 let total = 0;
+// WTF
+let tmpPosts = [];
+let tmpPost = {};
 
 export default {
 	getPosts(page, limit) {
@@ -42,5 +44,23 @@ export default {
 				posts: tmpPosts
 			};
 		});
+	},
+	getPostById(id) {
+		if (postsCatche[id]) {
+			return Promise.resolve(postsCatche[id]);
+		} else {
+			return apis.getPostById.get({
+				id
+			}).then(resp => {
+				if (resp.data.status != StatusCode.OK) {
+					throw new Error(resp.data.errMsg);
+				}
+				tmpPost = resp.data;
+				return parser.parse(resp.data.content);
+			}).then(content => {
+				tmpPost.content = content;
+				return tmpPost;
+			});
+		}
 	}
 };
