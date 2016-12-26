@@ -64,6 +64,7 @@
 <script>
 	import '../style/iconfont.css';
 	import '../style/_reset.scss';
+	let handler = null;
 	let scroll = (interVal, speed) => () => {
 		let position = $(window)
 			.scrollTop();
@@ -71,7 +72,8 @@
 			.scrollTop(position - interVal);
 		if (position > 0) {
 			interVal = position / 10;
-			setTimeout(scroll(interVal, speed), speed);
+			interVal = interVal < 20 ? 20 : interVal;
+			handler = setTimeout(scroll(interVal, speed), speed);
 		}
 	};
 	export default {
@@ -90,6 +92,9 @@
 					} else if (position < 200 && ctx.show) {
 						ctx.show = false;
 					}
+				});
+				$(document.body).on('mousewheel', (event) => {
+					clearTimeout(handler);
 				});
 			});
 		},
