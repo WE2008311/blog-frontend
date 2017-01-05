@@ -12,7 +12,7 @@ const routes = [{
 	component: home,
 }, {
 	name: 'archives',
-	path: '/archives',
+	path: '/archives/:page',
 	component: archives
 }, {
 	name: 'tags',
@@ -24,6 +24,9 @@ const routes = [{
 	name: 'posts',
 	path: '/posts/:id',
 	component: posts
+}, {
+	path: '/archives',
+	redirect: '/archives/1'
 }, {
 	path: '*',
 	redirect: '/home/1'

@@ -62,5 +62,16 @@ export default {
 				return tmpPost;
 			});
 		}
+	},
+	getArchives(page, limit) {
+		return apis.getArchives.get({
+			page,
+			limit
+		}).then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data;
+		});
 	}
 };

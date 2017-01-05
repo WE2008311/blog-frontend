@@ -5,7 +5,12 @@ export default {
 		pathname: '/posts'
 	},
 	getPostById: {
+		// get /posts/:id
 		pathname: '/posts/{id}',
 		restful: true
+	},
+	getArchives: {
+		// get /archives?page=1&limit=5
+		pathname: '/archives'
 	}
 };

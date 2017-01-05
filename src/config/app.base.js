@@ -1,6 +1,8 @@
 export default {
 	title: 'Test',
 	subTitle: 'intro',
+	pageLimit: 5,
+	windowLimit: 10,
 	logo: {
 		url: 'http://www.baidu.com',
 		sides: ['A', 'B', 'C', 'D', 'E', 'F'],

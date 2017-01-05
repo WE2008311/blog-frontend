@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div class="pagination-bar">
-		<pagination :total="total" :limit="limit" :window-limit="windowLimit" :current-page="currentPage" :route="homeRoute"></pagination>
+		<pagination :total="total" :limit="limit" :window-limit="windowLimit" :route="homeRoute"></pagination>
 	</div>
 </div>
 </template>
@@ -137,7 +137,7 @@
 			border-bottom: 1px solid rgba($color: $pColor, $alpha: 0.5);
 		}
 	}
-
+	
 	.pagination-bar {
 		width: 100%;
 		text-align: center;
@@ -158,10 +158,9 @@
 	export default {
 		data() {
 			return {
-				total: 501,
-				limit: 5,
-				windowLimit: 10,
-				currentPage: 11,
+				total: 1,
+				limit: config.pageLimit,
+				windowLimit: config.windowLimit,
 				homeRoute: 'home',
 				postsRoute: 'posts',
 				posts: []
@@ -177,33 +176,33 @@
 			'$route' (to, from) {
 				nprogress.start();
 				PostService.getPosts(to.params.page || 1, 5)
-				.then(data => {
-					this.total = data.total;
-					this.posts = data.posts;
-					nprogress.done();
-				})
-				.catch(err => {
-					console.error(err);
-					nprogress.done();
-				});
+					.then(data => {
+						this.total = data.total;
+						this.posts = data.posts;
+						nprogress.done();
+					})
+					.catch(err => {
+						console.error(err);
+						nprogress.done();
+					});
 			}
 		},
 		beforeRouteEnter(to, from, next) {
 			nprogress.start();
 			PostService.getPosts(to.params.page || 1, 5)
-			.then(data => {
-				next(vm => {
-					vm.total = data.total;
-					vm.posts = data.posts;
-					document.title = `Home | ${config.title}`;
+				.then(data => {
+					next(vm => {
+						vm.total = data.total;
+						vm.posts = data.posts;
+						document.title = `Home | ${config.title}`;
+						nprogress.done();
+					});
+				})
+				.catch(err => {
+					console.error(err);
 					nprogress.done();
+					next(false);
 				});
-			})
-			.catch(err => {
-				console.error(err);
-				nprogress.done();
-				next(false);
-			});
 		}
 	};
 </script>

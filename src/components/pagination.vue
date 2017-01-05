@@ -145,7 +145,7 @@
 				type: Number,
 				required: true
 			},
-			// 基础路
+			// 基础路由
 			route: {
 				required: true
 			}
