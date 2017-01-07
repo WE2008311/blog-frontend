@@ -149,6 +149,7 @@
 
 <script>
 	import '../style/_reset.scss';
+	import '../style/iconfont.css';
 	import nprogress from 'nprogress';
 	import 'nprogress/nprogress.css';
 	import pagination from './pagination';

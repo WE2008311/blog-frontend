@@ -96,6 +96,9 @@
 					this.total = data.total;
 					document.title = `Archives | ${config.title}`;
 					nprogress.done();
+				}).catch(err => {
+					console.error(err);
+					nprogress.done();
 				});
 			}
 		},
@@ -116,6 +119,10 @@
 						vm.total = data.total;
 						nprogress.done();
 					});
+				}).catch(err => {
+					console.error(err);
+					nprogress.done();
+					next(false);
 				});
 		}
 	};

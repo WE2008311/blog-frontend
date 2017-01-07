@@ -79,6 +79,7 @@ $titleMargin: 15px;
 
 <script>
 import '../style/_reset.scss';
+import '../style/iconfont.css';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 import PostService from '../lib/post-service';
