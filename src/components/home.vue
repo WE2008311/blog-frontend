@@ -191,10 +191,10 @@
 			nprogress.start();
 			PostService.getPosts(to.params.page || 1, 5)
 				.then(data => {
+					document.title = `Home | ${config.title}`;
 					next(vm => {
 						vm.total = data.total;
 						vm.posts = data.posts;
-						document.title = `Home | ${config.title}`;
 						nprogress.done();
 					});
 				})

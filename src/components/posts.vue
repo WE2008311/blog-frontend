@@ -68,7 +68,6 @@
 		beforeRouteEnter(to, from, next) {
 			let id = to.params.id;
 			nprogress.start();
-			console.log(PostService);
 			PostService.getPostById(id)
 				.then(post => {
 					next(vm => {

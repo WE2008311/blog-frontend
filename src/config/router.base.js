@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 const home = resolve => require(['../components/home'], resolve);
 const archives = resolve => require(['../components/archives'], resolve);
 const posts = resolve => require(['../components/posts'], resolve);
+const tags = resolve => require(['../components/tags'], resolve);
 
 const routes = [{
 	name: 'home',
@@ -16,7 +17,12 @@ const routes = [{
 	component: archives
 }, {
 	name: 'tags',
-	path: '/tags'
+	path: '/tags',
+	component: tags
+}, {
+	name: 'tag',
+	path: '/tags/:tag',
+	component: tags
 }, {
 	name: 'about',
 	path: '/about'

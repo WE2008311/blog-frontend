@@ -12,5 +12,9 @@ export default {
 	getArchives: {
 		// get /archives?page=1&limit=5
 		pathname: '/archives'
+	},
+	getTags: {
+		// get /tags
+		pathname: '/tags'
 	}
 };

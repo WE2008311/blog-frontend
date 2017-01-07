@@ -33,7 +33,7 @@
 	}
 	
 	.archive-date {
-		color: $globalBgColor;
+		color: $hColor;
 		font-size: $titleFtSize;
 		font-weight: 500;
 		i {
@@ -103,6 +103,7 @@
 			nprogress.start();
 			PostService.getArchives(to.params.page || 1, config.pageLimit)
 				.then(data => {
+					document.title = `Archives | ${config.title}`;
 					next(vm => {
 						data.archives.forEach(archive => archive.posts
 							.forEach(post => (post.route = {
@@ -113,7 +114,6 @@
 							}, post.operations = ['icon-pencil', 'icon-bin'])));
 						vm.archives = data.archives;
 						vm.total = data.total;
-						document.title = `Archives | ${config.title}`;
 						nprogress.done();
 					});
 				});

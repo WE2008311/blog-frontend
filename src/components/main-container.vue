@@ -13,6 +13,7 @@
 		min-width: 600px;
 		max-width: 800px;
 		position: relative;
+		z-index: 5;
 	}
 
 	.s-top {

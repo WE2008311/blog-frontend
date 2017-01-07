@@ -134,5 +134,55 @@
 				"title": "Hello world"
 			}]
 		}]
+	},
+	"get /tags": {
+		"status": "200",
+		"total": 50,
+		"tags": [{
+			"name": "Linux",
+			"posts": [{
+				"id": "5859d59effc28134d02796b1",
+				"title": "Hello world0"
+			}, {
+				"id": "5859d59effc28134d02796b2",
+				"title": "Hello world1"
+			}, {
+				"id": "5859d59effc28134d02796b3",
+				"title": "Hello world2"
+			}, {
+				"id": "5859d59effc28134d02796b4",
+				"title": "Hello world3"
+			}]
+		}, {
+			"name": "Node",
+			"posts": [{
+				"id": "5859d59effc28134d02796b1",
+				"title": "Hello world4"
+			}, {
+				"id": "5859d59effc28134d02796b2",
+				"title": "Hello world5"
+			}, {
+				"id": "5859d59effc28134d02796b3",
+				"title": "Hello world6"
+			}, {
+				"id": "5859d59effc28134d02796b4",
+				"title": "Hello world7"
+			}]
+		}, {
+			"name": "CSS",
+			"posts": [{
+				"id": "5859d59effc28134d02796b1",
+				"title": "Hello world8"
+			}, {
+				"id": "5859d59effc28134d02796b2",
+				"title": "Hello world9"
+			}, {
+				"id": "5859d59effc28134d02796b3",
+				"title": "Hello world10"
+			}, {
+				"id": "5859d59effc28134d02796b4",
+				"title": "Hello world11"
+			}]
+		}]
 	}
 }

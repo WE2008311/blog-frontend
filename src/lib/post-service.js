@@ -73,5 +73,23 @@ export default {
 			}
 			return resp.data;
 		});
+	},
+	getTags() {
+		return apis.getTags.get().then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data;
+		});
+	},
+	getTagByName(tag) {
+		return apis.getTagByName.get({
+			tag
+		}).then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data;
+		});
 	}
 };
