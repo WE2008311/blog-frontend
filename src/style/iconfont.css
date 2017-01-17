@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'blog-icon';
-  src:  url('../assets/fonts/blog-icon.eot?uibso4');
-  src:  url('../assets/fonts/blog-icon.eot?uibso4#iefix') format('embedded-opentype'),
-    url('../assets/fonts/blog-icon.ttf?uibso4') format('truetype'),
-    url('../assets/fonts/blog-icon.woff?uibso4') format('woff'),
-    url('../assets/fonts/blog-icon.svg?uibso4#blog-icon') format('svg');
+  src:  url('fonts/blog-icon.eot?jyjofn');
+  src:  url('fonts/blog-icon.eot?jyjofn#iefix') format('embedded-opentype'),
+    url('fonts/blog-icon.ttf?jyjofn') format('truetype'),
+    url('fonts/blog-icon.woff?jyjofn') format('woff'),
+    url('fonts/blog-icon.svg?jyjofn#blog-icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -53,6 +53,12 @@ i {
 }
 .icon-equalizer:before {
   content: "\e992";
+}
+.icon-stats-dots:before {
+  content: "\e99b";
+}
+.icon-stats-bars:before {
+  content: "\e99c";
 }
 .icon-bin:before {
   content: "\e9ac";
