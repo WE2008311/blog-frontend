@@ -108,7 +108,9 @@
 			},
 			posts() {
 				if (this.query) {
-					return this.tagsData.reduce((a, b) => a.concat(b.posts.map(post => (post.route = {
+					return this.tagsData
+					.reduce((a, b) => a.
+						concat(b.posts.map(post => (post.route = {
 							name: 'posts',
 							params: {
 								id: post.id

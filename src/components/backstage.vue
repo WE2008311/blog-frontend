@@ -50,7 +50,7 @@
 	import '../style/_main.scss';
 	import navBar from './nav-bar';
 	import mainContainer from './main-container';
-	import config from '../config/app.base';
+	import config from '../config/app.backstage';
 
 	window.config  = config;
 	config.showNav = true;

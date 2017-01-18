@@ -1,7 +1,3 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-
 const home = resolve => require(['../components/home'], resolve);
 const archives = resolve => require(['../components/archives'], resolve);
 const posts = resolve => require(['../components/posts'], resolve);
@@ -38,6 +34,5 @@ const routes = [{
 	redirect: '/home/1'
 }];
 
-export default new VueRouter({
-	routes
-});
+
+export default routes;

@@ -18,6 +18,7 @@ module.exports = {
 	cache: true,
 	entry: {
 		main: [path.resolve(APP_PATH, 'main')],
+		backstage: [path.resolve(APP_PATH, 'backstage')],
 		// 仅有entry只意味着这些公共模块也会被打成一个js，但不意味着其他entry不会和第三方库合并
 		// 所以如果希望第三方库被打成一个包，并且其他entry不会和第三方模块一起打包，还需要CommonsChunkPlugin
 		vender: ['vue', 'zepto-wrapper']
@@ -155,11 +156,23 @@ module.exports = {
 		new Webpack.NoErrorsPlugin(),
 		/**********/
 		new HtmlWebpackPlugin({
-			title: 'Hello',
+			title: 'TK Boy',
 			filename: 'index.html',
 			template: path.resolve(APP_PATH, 'index.ejs'),
 			favicon: path.resolve(APP_PATH, 'assets/favicon-32x32.png'),
 			chunks: ['vender', 'main'],
+			inject: 'body',
+			minify: {
+				collapseWhitespace: true,
+				minifyJS: true
+			}
+		}),
+		new HtmlWebpackPlugin({
+			title: 'TK Boy',
+			filename: 'backstage.html',
+			template: path.resolve(APP_PATH, 'backstage.ejs'),
+			favicon: path.resolve(APP_PATH, 'assets/favicon-32x32.png'),
+			chunks: ['vender', 'backstage'],
 			inject: 'body',
 			minify: {
 				collapseWhitespace: true,

@@ -2,12 +2,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Apis from 'st-api';
 import MarkdownParser from './lib/markdown-parser';
-import routes from './config/routes.base';
-import app from './components/app';
+import routes from './config/routes.backstage';
+import app from './components/backstage.vue';
 import HttpClient from './lib/http-client';
-import apiConfig from './config/apiconf.base';
+import apiConfig from './config/apiconf.backstage';
 
 Vue.use(VueRouter);
+console.log(routes);
 
 let router = new VueRouter({
 	routes
