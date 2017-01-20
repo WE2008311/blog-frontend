@@ -5,7 +5,7 @@
 	</transition>
 	<main-container :class="{'rm-margin': resizeMain}">
 		<transition name="main" mode="out-in">
-			<router-view></router-view>
+			<router-view :items="dashboardItems"></router-view>
 		</transition>
 	</main-container>
 </div>
