@@ -62,7 +62,7 @@
     "koa-bodyparser": "^2.3.0",
     "koa-multer": "0.0.2",
     "koa-router": "^5.4.0",
-    "node-sass": "^4.1.0",
+    "node-sass": "^4.3.0",
     "open": "0.0.5",
     "postcss-loader": "^1.2.1",
     "sass-loader": "^4.1.0",
