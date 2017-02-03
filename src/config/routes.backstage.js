@@ -1,6 +1,6 @@
 import routes from './routes.base';
 const dashboard = resolve => require(['../components/dashboard'], resolve);
-const editor = resolve => require(['../components/editor'], resolve);
+const edit = resolve => require(['../components/edit'], resolve);
 
 routes.unshift({
 	name: 'dashboard',
@@ -9,11 +9,11 @@ routes.unshift({
 }, {
 	name: 'new',
 	path: '/edit',
-	component: editor,
+	component: edit,
 }, {
 	name: 'edit',
 	path: '/edit/:id',
-	component: editor
+	component: edit
 });
 
 

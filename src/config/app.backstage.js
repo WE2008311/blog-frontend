@@ -7,6 +7,24 @@ base.navList.splice(3, 0, {
 });
 
 base.dashboardItems = [{
+	icon: 'icon-quill',
+	desc: 'New Post',
+	route: {
+		name: 'new'
+	}
+}, {
+	icon: 'icon-stats-dots',
+	desc: 'New Post',
+	route: {
+		name: 'new'
+	}
+}, {
+	icon: 'icon-stats-dots',
+	desc: 'New Post',
+	route: {
+		name: 'new'
+	}
+}, {
 	icon: 'icon-stats-dots',
 	desc: 'New Post',
 	route: {

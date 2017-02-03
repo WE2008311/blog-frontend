@@ -34,6 +34,10 @@
 		margin-bottom: $titleMargin;
 		border-bottom: 2px solid rgba($color: #000, $alpha: 0.2);
 	}
+
+	.posts {
+		margin-bottom: 50px;
+	}
 	
 	.posts-header {
 		display: flex;
@@ -53,16 +57,18 @@
 	.search-bar {
 		position: relative;
 		input {
+			color: $pColor;
 			width: 9em;
 			font-family: $globalFontFamily;
 			font-size: $pFontSize;
 			padding: 6px 2.5em 6px 10px;
-			border: 1px solid $pColor;
+			border: 1px solid #888;
 			border-radius: 4px;
 			outline: none;
 			transition: all 0.3s ease;
 			&:hover {
 				width: 16em;
+				border-color: $pColor;
 				box-shadow: 0 0 2px 2px rgba($color: $globalBgColor, $alpha: 0.1);
 			}
 		}

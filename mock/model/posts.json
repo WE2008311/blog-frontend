@@ -184,5 +184,10 @@
 				"title": "Hello world11"
 			}]
 		}]
+	},
+	"get /taglist": {
+		"status": "200",
+		"total": 50,
+		"tags": ["Linux", "Node", "CS"]
 	}
 }

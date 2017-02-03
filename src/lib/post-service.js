@@ -82,14 +82,12 @@ export default {
 			return resp.data;
 		});
 	},
-	getTagByName(tag) {
-		return apis.getTagByName.get({
-			tag
-		}).then(resp => {
+	getTagList() {
+		return apis.getTagList.get().then(resp => {
 			if (resp.data.status != StatusCode.OK) {
 				throw new Error(resp.data.errMsg);
 			}
-			return resp.data;
+			return resp.data.tags;
 		});
 	}
 };
