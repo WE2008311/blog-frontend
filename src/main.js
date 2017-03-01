@@ -8,6 +8,10 @@ import HttpClient from './lib/http-client';
 import apiConfig from './config/apiconf.base';
 
 Vue.use(VueRouter);
+/* global DEBUG */
+if (DEBUG) {
+	console.log('debug');
+}
 
 let router = new VueRouter({
 	routes

@@ -1,18 +1,11 @@
 const path = require('path');
-const ROOT_PATH = path.resolve(__dirname, '..');
-const APP_PATH = path.resolve(ROOT_PATH, 'src');
-const ASSETS_PATH = path.resolve(APP_PATH, 'assets');
-const COMPONENT_PATH = path.resolve(APP_PATH, 'components');
-const STYLE_PATH = path.resolve(APP_PATH, 'style');
-const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
-const OUTPUT_PATH = path.resolve(ROOT_PATH, 'dist');
+const buildPath = require('./build-path');
 
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProvidePlugin = Webpack.ProvidePlugin;
 const CommonsChunkPlugin = Webpack.optimize.CommonsChunkPlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = Webpack.optimize.UglifyJsPlugin;
 const DefinePlugin = Webpack.DefinePlugin;
 // const autoprefixer = require('autoprefixer');
 
@@ -24,58 +17,26 @@ module.exports = {
 	// 开启缓存加快构建速度
 	cache: true,
 	// 项目根目录
-	context: ROOT_PATH,
-	// 开启sourcemap
-	devtool: 'source-map',
-	devServer: {
-		port: 8080,
-		// 一定一定要加/!!!
-		// publicPath: 'http://localhost:8080/',
-		contentBase: OUTPUT_PATH,
-		// clientLogLevel: "warning",
-		compress: true,
-		hot: true,
-		noInfo: true,
-		inline: true,
-		stats: {
-			colors: true
-		},
-		watchOptions: {
-			// 聚合500ms内的文件变动一起编译
-			aggregateTimeout: 500,
-			// 1000ms轮询一次文件变动
-			poll: 1000
-		}
-		// headers: {
-		// 	"X-Custom-Header": "yes"
-		// },
-		// proxy: {
-		// 	'**': {
-		// 		target: 'http://localhost:80'
-		// 	}
-		// },
-	},
+	context: buildPath.ROOT_PATH,
 	resolve: {
 		extensions: ['.js', '.vue', '.json'],
-		modules: [APP_PATH, MODULE_PATH],
+		modules: [buildPath.APP_PATH, buildPath.MODULE_PATH],
 		alias: {
 			// 参见官方文档standalone vs runtime-only build
 			'vue$': 'vue/dist/vue.esm.js',
-			'src': APP_PATH,
-			'assets': ASSETS_PATH,
-			'components': COMPONENT_PATH,
-			'style': STYLE_PATH
+			'src': buildPath.APP_PATH,
+			'assets': buildPath.ASSETS_PATH,
+			'components': buildPath.COMPONENT_PATH,
+			'style': buildPath.STYLE_PATH
 		}
 	},
 	entry: {
-		main: [path.resolve(APP_PATH, 'main')],
-		backstage: [path.resolve(APP_PATH, 'backstage')],
+		main: [path.resolve(buildPath.APP_PATH, 'main')],
+		backstage: [path.resolve(buildPath.APP_PATH, 'backstage')],
 		vender: ['vue', 'zepto-wrapper']
 	},
 	output: {
-		path: OUTPUT_PATH,
-		// 一定一定要加/!!!
-		// publicPath: 'http://localhost:8080/',
+		path: buildPath.OUTPUT_PATH,
 		filename: 'scripts/[name].js?[chunkhash]',
 		chunkFilename: 'scripts/[id].js?[chunkhash]'
 	},
@@ -84,7 +45,7 @@ module.exports = {
 			// 会找到.eslintrc
 			test: /\.(jsx?|vue)$/,
 			enforce: 'pre',
-			exclude: MODULE_PATH,
+			exclude: buildPath.MODULE_PATH,
 			loader: 'eslint-loader',
 			options: {
 				useEslintrc: true,
@@ -92,7 +53,7 @@ module.exports = {
 			}
 		}, {
 			test: /\.vue$/,
-			include: APP_PATH,
+			include: buildPath.APP_PATH,
 			loader: 'vue-loader',
 			options: {
 				// 不需要这个，vue-loader会自动搜索postcss.config.js
@@ -104,13 +65,16 @@ module.exports = {
 					}),
 					scss: ExtractTextPlugin.extract({
 						fallback: 'vue-style-loader',
-						use: ['css-loader?importLoaders=1&sourceMap', 'postcss-loader', 'sass-loader']
+						use: ['css-loader?importLoaders=1&sourceMap', 'postcss-loader',
+							'sass-loader'
+						]
 					}),
 				}
 			}
 		}, {
 			test: /\.jsx?$/,
-			include: [APP_PATH, path.resolve(MODULE_PATH, 'st-api')],
+			include: [buildPath.APP_PATH, path.resolve(buildPath.MODULE_PATH,
+				'st-api')],
 			loader: 'babel-loader',
 			options: {
 				presets: ['es2015'],
@@ -141,7 +105,7 @@ module.exports = {
 		}, {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: 'url-loader',
-			include: APP_PATH,
+			include: buildPath.APP_PATH,
 			options: {
 				limit: 10000,
 				name: 'images/[name].[ext]'
@@ -149,7 +113,7 @@ module.exports = {
 		}, {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 			loader: 'url-loader',
-			include: APP_PATH,
+			include: buildPath.APP_PATH,
 			options: {
 				limit: 10000,
 				name: 'fonts/[name].[chunkhash:7].[ext]'
@@ -166,10 +130,6 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		/********for hot middleware ************/
-    new Webpack.HotModuleReplacementPlugin(),
-    new Webpack.NoEmitOnErrorsPlugin(),
-		/********************************** */
 		// 提取第三方模块，参考官方文档，注意是names
 		new CommonsChunkPlugin({
 			name: 'vender',
@@ -195,8 +155,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'TK Boy',
 			filename: 'index.html',
-			template: path.resolve(APP_PATH, 'index.ejs'),
-			favicon: path.resolve(APP_PATH, 'assets/favicon-32x32.png'),
+			template: path.resolve(buildPath.APP_PATH, 'index.ejs'),
+			favicon: path.resolve(buildPath.APP_PATH, 'assets/favicon-32x32.png'),
 			chunks: ['manifest', 'vender', 'main'],
 			inject: 'body',
 			minify: {
@@ -207,8 +167,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'TK Boy',
 			filename: 'backstage.html',
-			template: path.resolve(APP_PATH, 'backstage.ejs'),
-			favicon: path.resolve(APP_PATH, 'assets/favicon-32x32.png'),
+			template: path.resolve(buildPath.APP_PATH, 'backstage.ejs'),
+			favicon: path.resolve(buildPath.APP_PATH, 'assets/favicon-32x32.png'),
 			chunks: ['manifest', 'vender', 'backstage'],
 			inject: 'body',
 			minify: {
@@ -216,18 +176,12 @@ module.exports = {
 				minifyJS: true
 			}
 		}),
-		new UglifyJsPlugin({
-			compress: {
-				warnings: true
-			},
-			sourceMap: true
-		}),
 		new DefinePlugin({
 			// 用于调试
 			DEBUG: JSON.stringify(process.env.NODE_ENV === 'dev'),
 			// 用于生产环境去除vue警告信息,注意双引号一定要用，原因是DefinePlugin是用字符串替换文件内容
 			'process.env': {
-				NODE_ENV: '"production"'
+				NODE_ENV: process.env.NODE_ENV === 'dev' ? '"development"' : '"production"'
 			}
 		})
 	]

@@ -28,15 +28,17 @@
 			box-sizing: border-box;
 			padding: 0 10px 0 25px;
 			border-bottom: 1px dashed $borderColor;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 1;
 			overflow: hidden;
 			position: relative;
 			transition: border-color 0.3s ease;
 			a {
 				color: $titleColor;
 				font-size: $titleFontSize;
+				display: inline-block;
+				max-width: 500px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 				transition: color 0.3s ease;
 			}
 			&:hover {

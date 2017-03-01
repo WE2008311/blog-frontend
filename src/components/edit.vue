@@ -11,6 +11,7 @@
 			<dropdown :list="list" class="tag-list" @onDropdownChange="dropdownChange"></dropdown>
 		</div>
 	</form>
+	<editor></editor>
 </div>
 </template>
 
@@ -53,12 +54,13 @@
 
 <script>
 	import '../style/_reset.scss';
-	import '../style/iconfont.css';
+	// import '../style/iconfont.css';
 	import nprogress from 'nprogress';
 	import Promise from 'bluebird';
 	import 'nprogress/nprogress.css';
 	import PostService from '../lib/post-service';
 	import dropdown from './dropdown';
+	import editor from './editor';
 	/* global config */
 
 	export default {
@@ -87,7 +89,8 @@
 			}
 		},
 		components: {
-			dropdown
+			dropdown,
+			editor
 		},
 		beforeRouteEnter(to, from, next) {
 			let id = to.params.id;
