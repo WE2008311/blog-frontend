@@ -1,7 +1,7 @@
 <template>
 <div id="dashboard">
 	<ul>
-		<router-link :to="item.route" tag="li" class="item" v-for="item in items">
+		<router-link :to="item.route" tag="li" class="item" v-for="(item, index) in items" :key="index">
 			<div class="icon-wrapper">
 				<i :class="item.icon"></i>
 			</div>

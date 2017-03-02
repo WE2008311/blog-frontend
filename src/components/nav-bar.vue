@@ -10,7 +10,7 @@
 		</div>
 		<nav id="nav-list">
 			<ul>
-				<router-link v-for="item in navList" tag="li" :to="item.path" active-class="nav-active">
+				<router-link v-for="(item, index) in navList" tag="li" :to="item.path" active-class="nav-active" :key="index">
 					<i :class="item.icon"></i><span class="nav-item">{{item.name}}</span>
 				</router-link>
 			</ul>

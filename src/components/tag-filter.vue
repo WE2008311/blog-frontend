@@ -1,7 +1,7 @@
 <template>
 <div class="tag-filter">
 	<ul>
-		<router-link class="tag" active-class="active-tag" tag="li" :to="item.route" v-for="item in tags">{{item.name}}</router-link>
+		<router-link class="tag" active-class="active-tag" tag="li" :to="item.route" v-for="(item, index) in tags" :key="index">{{item.name}}</router-link>
 	</ul>
 </div>
 </template>

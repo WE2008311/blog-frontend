@@ -2,7 +2,7 @@
 <div class="pagination">
 	<ul>
 		<li @click="prev">«</li>
-		<router-link v-for="page in currentWindow" tag="li" :to="{name: route, params: {page}}" active-class="cur-page" exact>{{page}}</router-link>
+		<router-link v-for="page in currentWindow" tag="li" :to="{name: route, params: {page}}" active-class="cur-page" :key="page" exact>{{page}}</router-link>
 		<li @click="next">»</li>
 	</ul>
 </div>
