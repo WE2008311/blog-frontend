@@ -65,6 +65,7 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
+		z-index: 99;
 		background: $listBgColor;
 		box-shadow: 0 8px 16px 0 rgba($color: #000, $alpha: 0.2);
 		transition: all 0.3s ease;
@@ -101,11 +102,11 @@
 				setTimeout(() => this.hideDropdown = false, 0);
 				const item = this.list[index];
 				this.cname = item.name;
-				this.$emit('onDropdownChange', [this.id, index, item.name, item.value]);
+				this.$emit('onDropdownChange', [this.cid, index, item.name, item.value]);
 			},
 		},
 		props: {
-			id: {
+			cid: {
 				type: Number,
 			},
 			width: {

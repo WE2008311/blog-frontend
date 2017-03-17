@@ -116,7 +116,7 @@ module.exports = {
 			include: buildPath.APP_PATH,
 			options: {
 				limit: 10000,
-				name: 'fonts/[name].[chunkhash:7].[ext]'
+				name: 'fonts/[name].[ext]'
 			}
 		}, {
 			test: require.resolve('zepto-wrapper'),
