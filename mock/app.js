@@ -8,8 +8,7 @@ const app = new Koa();
 
 app.use(cors());
 
-app.use(controller(router))
-	.use(router.allowedMethods());
+app.use(controller(router));
 
 app.on('error', (err, ctx) => {
 	console.log('GLOBAL-ERROR:');

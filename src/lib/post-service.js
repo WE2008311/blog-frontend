@@ -29,6 +29,7 @@ export default {
 			postsCatche = {};
 			for (let i in posts) {
 				pm.push(parser.parse(posts[i].content));
+				tmpPosts[i].rawContent = posts[i].content;
 			}
 			return Promise.all(pm);
 		}).then(contents => {
@@ -99,8 +100,20 @@ export default {
 			return resp.data.errMsg;
 		});
 	},
-	modifyPost(data) {
-		return apis.modifyPost.put(data).then(resp => {
+	modifyPost(data, id) {
+		return apis.modifyPost.put(data, {
+			id
+		}).then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data.errMsg;
+		});
+	},
+	deletePost(id) {
+		return apis.deletePost.delete({
+			id
+		}).then(resp => {
 			if (resp.data.status != StatusCode.OK) {
 				throw new Error(resp.data.errMsg);
 			}

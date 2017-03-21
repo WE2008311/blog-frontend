@@ -166,11 +166,10 @@
 				} else if (this.$route.name === 'edit') {
 					// TODO 考虑id可能是数字要做类型转换
 					PostService.modifyPost({
-						id: this.$route.params.id,
 						title: this.title,
 						tags: this.taglist,
 						content: this.content
-					})
+					}, this.$route.params.id)
 					.then(msg => {
 						this.isLoading = false;
 						this.toastContent = msg;

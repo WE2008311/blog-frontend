@@ -71,13 +71,13 @@
 		"status": "200",
 		"archives": [{
 			"year": 2016,
-			"month": 12,
+			"month": 11,
 			"posts": [{
 				"id": "5859d59effc28134d02796b1",
 				"title": "Hello world"
 			}, {
 				"id": "5859d59effc28134d02796b2",
-				"title": "Hello world"
+				"title": "Hello world1"
 			}, {
 				"id": "5859d59effc28134d02796b3",
 				"title": "Hello world"
@@ -194,8 +194,12 @@
 		"status": "200",
 		"errMsg": "发布成功"
 	},
-	"put /posts": {
+	"put /posts/:id": {
 		"status": "200",
 		"errMsg": "修改成功"
+	},
+	"delete /posts/:id": {
+		"status": "200",
+		"errMsg": "删除成功"
 	}
 }

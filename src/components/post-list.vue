@@ -89,11 +89,11 @@
 	export default {
 		methods: {
 			doOperate(postIdx, operIdx) {
-				this.$emit('operate', postIdx, operIdx, this.id);
+				this.$emit('operate', postIdx, operIdx, this.cid);
 			}
 		},
 		props: {
-			id: {
+			cid: {
 				type: Number
 			},
 			posts: {

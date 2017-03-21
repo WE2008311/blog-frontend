@@ -11,8 +11,15 @@ Object.assign(apis, {
 	},
 	modifyPost: {
 		// put /posts
-		pathname: '/posts',
-		method: 'put'
+		pathname: '/posts/{id}',
+		method: 'put',
+		restful: true
+	},
+	deletePost: {
+		// delete /posts
+		pathname: '/posts/{id}',
+		method: 'delete',
+		restful: true
 	}
 });
 export default apis;
