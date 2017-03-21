@@ -3,7 +3,7 @@
 	<transition name="nav-show">
 		<nav-bar v-show="showNav" :logo="logo" :title="title" :sub-title="subTitle" :nav-list="navList"></nav-bar>
 	</transition>
-	<main-container :class="{'rm-margin': resizeMain}">
+	<main-container :class="{'rm-margin': resizeMain}" :extend="extend">
 		<transition name="main" mode="out-in">
 			<router-view :items="dashboardItems"></router-view>
 		</transition>
@@ -55,6 +55,7 @@
 	window.config  = config;
 	config.showNav = true;
 	config.resizeMain = false;
+	config.extend = false;
 	export default {
 		data() {
 			return config;
@@ -64,6 +65,11 @@
 			$(window).on('resize', (event) => {
 				ctx.resizeMain = !(ctx.showNav = $(window).width() > 800);
 			});
+		},
+		watch: {
+			'$route'(to, from) {
+				this.extend = to.name === 'new' || to.name === 'edit';
+			}
 		},
 		components: {
 			mainContainer,

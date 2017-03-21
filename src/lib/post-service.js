@@ -56,6 +56,7 @@ export default {
 					throw new Error(resp.data.errMsg);
 				}
 				tmpPost = resp.data;
+				tmpPost.rawContent = resp.data.content;
 				return parser.parse(resp.data.content);
 			}).then(content => {
 				tmpPost.content = content;
@@ -88,6 +89,22 @@ export default {
 				throw new Error(resp.data.errMsg);
 			}
 			return resp.data.tags;
+		});
+	},
+	createPost(data) {
+		return apis.createPost.post(data).then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data.errMsg;
+		});
+	},
+	modifyPost(data) {
+		return apis.modifyPost.put(data).then(resp => {
+			if (resp.data.status != StatusCode.OK) {
+				throw new Error(resp.data.errMsg);
+			}
+			return resp.data.errMsg;
 		});
 	}
 };

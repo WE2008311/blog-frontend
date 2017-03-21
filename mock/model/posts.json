@@ -189,5 +189,13 @@
 		"status": "200",
 		"total": 50,
 		"tags": ["Linux", "Node", "CS"]
+	},
+	"post /posts": {
+		"status": "200",
+		"errMsg": "发布成功"
+	},
+	"put /posts": {
+		"status": "200",
+		"errMsg": "修改成功"
 	}
 }

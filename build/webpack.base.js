@@ -13,7 +13,7 @@ module.exports = {
 	// 构建的目标平台为浏览器
 	target: 'web',
 	// 对第一个编译错误直接编译失败而不是继续编译
-	bail: true,
+	// bail: true,
 	// 开启缓存加快构建速度
 	cache: true,
 	// 项目根目录

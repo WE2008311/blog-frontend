@@ -1,5 +1,5 @@
 <template>
-<div id="main-container">
+<div id="main-container" :class="{'is-large': extend}">
 	<slot></slot>
 	<scrollTop class="s-top"></scrollTop>
 </div>
@@ -14,6 +14,11 @@
 		max-width: 800px;
 		position: relative;
 		z-index: 5;
+	}
+
+	.is-large {
+		min-width: 1000px!important;
+		max-width: 1200px!important;
 	}
 
 	.s-top {
@@ -34,6 +39,12 @@
 		// },
 		components: {
 			scrollTop
+		},
+		props: {
+			extend: {
+				type: Boolean,
+				default: false
+			}
 		}
 	};
 </script>
