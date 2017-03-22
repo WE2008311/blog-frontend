@@ -116,6 +116,7 @@
 		bottom: 20px;
 		i {
 			margin-left: 5px;
+			cursor: pointer;
 		}
 	}
 </style>

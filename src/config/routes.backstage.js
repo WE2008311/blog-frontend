@@ -20,6 +20,7 @@ routes.unshift({
 	path: '/archives/:page',
 	component: archives
 });
+// suck
 routes.splice(5, 1);
 
 
