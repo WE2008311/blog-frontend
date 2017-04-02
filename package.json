@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mock": "supervisor -w ./mock -e 'js,json' -- ./mock/app.js",
+    "mock": "oock -w -p 3000 -d ./mock",
     "build-dev": "cross-env NODE_ENV=dev webpack --config build/build.js",
     "build-prod": "cross-env NODE_ENV=prod webpack --config build/build.js",
     "start": "cross-env NODE_ENV=dev node start.js"

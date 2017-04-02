@@ -1,5 +1,3 @@
-const bodyParser = require('koa-bodyparser');
-
 function demo(opts) {
 	return async (ctx, next) => {
 		console.log(ctx.request.body);
@@ -17,5 +15,5 @@ function demo(opts) {
 }
 
 module.exports = {
-	'post /wait/:id': [bodyParser(), demo()]
+	'post /wait/:id': demo()
 };
