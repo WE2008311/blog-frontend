@@ -1,8 +1,12 @@
+#!/usr/bin/env node
 const Koa = require('koa');
+const argv = require('yargs').argv;
 const controller = require('./controller');
 const router = require('koa-router')();
 const cors = require('./middleware/cors');
-const config = require('./config/app.config');
+
+const port = parseInt(argv.port, 10) || parseInt(argv.p, 10) || 3000;
+const host = argv.host || argv.h || '127.0.0.1';
 
 const app = new Koa();
 
@@ -15,6 +19,6 @@ app.on('error', (err, ctx) => {
 	console.log(err);
 });
 
-app.listen(config.port);
+app.listen(port, host);
 
-console.log(`Mock server is running on port: ${config.port}`);
+console.log(`Mock server is running on: ${host}:${port}`);

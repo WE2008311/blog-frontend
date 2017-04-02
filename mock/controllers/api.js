@@ -10,12 +10,12 @@ function genController() {
 	let apis = {};
 
 	for (let f in dataFiles) {
-		console.log(`Generate apis: ${dataFiles[f]}...`)
+		console.log(`Generate apis: ${dataFiles[f]}...`);
 		apiGroup = require(path.resolve(MODEL_DIR, dataFiles[f]));
 		for (let key in apiGroup) {
 			let controller = (function (param) {
-				return function* (next) {
-					this.body = param;
+				return async (ctx, next) => {
+					ctx.body = param;
 				};
 			})(apiGroup[key]);
 			apis[key] = [bodyParser(), controller];

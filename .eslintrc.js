@@ -7,7 +7,7 @@ module.exports = {
 		'amd': true,
 		'jquery': true
 	},
-	parser: 'espree',
+	parser: 'babel-eslint',
 	parserOptions: {
 		ecmaVersion: 6,
 		sourceType: 'module',
