@@ -2,7 +2,6 @@ module.exports = {
 	env: {
 		'browser': true,
 		'es6': true,
-		'node': true,
 		'commonjs': true,
 		'amd': true,
 		'jquery': true
@@ -15,7 +14,7 @@ module.exports = {
 			jsx: true
 		}
 	},
-	extends: 'eslint:recommended',
+	extends: ['vue', 'eslint:recommended'],
 	rules: {
 		'indent': ['warn', 'tab'],
 		'linebreak-style': ['error', 'unix'],
@@ -43,5 +42,5 @@ module.exports = {
 	globals: {
 		console: false
 	},
-	plugins: ['vue']
+	plugins: ['vue', 'html']
 };
